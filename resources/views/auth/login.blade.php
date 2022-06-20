@@ -29,11 +29,9 @@
 				Phone number
 			</label>
 			<div class="alert alert-success" id="successAuth" style="display: none;"></div>
-			<form>
 				<input type="text" id="number" class="form-control" value="+63" placeholder="+63XXXXXXXXXX">
 				<div id="recaptcha-container"></div>
 				<button type="button" class="btn btn-primary mt-3" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="sendOTP();">Send OTP</button>
-			</form>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 		<div class="collapse" id="collapseExample">
@@ -42,10 +40,8 @@
 						Verification Code
 					</label>
 					<div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
-					<form>
 						<input type="text" id="verification" class="form-control" placeholder="Verification code">
 						<button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify code</button>
-					</form>
 				</div>
 		</div>
 		<div class="mb-6">
