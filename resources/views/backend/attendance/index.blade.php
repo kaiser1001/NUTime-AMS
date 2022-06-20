@@ -29,7 +29,7 @@
                             <span class="text-sm">Class</span>
                         </label>
                         <label class="ml-4 block text-gray-600 font-bold">
-                            <input name="type" class="mr-2 leading-tight" type="radio" value="teacher" disabled>
+                            <input name="type" class="mr-2 leading-tight" type="radio" value="teacher" enabled>
                             <span class="text-sm">Teacher</span>
                         </label>
                     </div>
