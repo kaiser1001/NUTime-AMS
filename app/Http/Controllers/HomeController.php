@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Grade;
-use App\Parents;
 use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
@@ -35,11 +34,10 @@ class HomeController extends Controller
         
         if ($user->hasRole('Admin')) {
 
-            $parents = Parents::latest()->get();
             $teachers = Teacher::latest()->get();
             $students = Student::latest()->get();
 
-            return view('home', compact('parents','teachers','students'));
+            return view('home', compact('teachers','students'));
 
         } elseif ($user->hasRole('Teacher')) {
 
@@ -47,15 +45,9 @@ class HomeController extends Controller
 
             return view('home', compact('teacher'));
 
-        } elseif ($user->hasRole('Parent')) {
+        }  elseif ($user->hasRole('Student')) {
             
-            $parents = Parents::with(['children'])->withCount('children')->findOrFail($user->parent->id); 
-
-            return view('home', compact('parents'));
-
-        } elseif ($user->hasRole('Student')) {
-            
-            $student = Student::with(['user','parent','class','attendances'])->findOrFail($user->student->id); 
+            $student = Student::with(['user','class','attendances'])->findOrFail($user->student->id); 
 
             return view('home', compact('student'));
 

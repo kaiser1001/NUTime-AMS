@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Grade;
-use App\Parents;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,9 +32,8 @@ class StudentController extends Controller
     public function create()
     {
         $classes = Grade::latest()->get();
-        $parents = Parents::with('user')->latest()->get();
         
-        return view('backend.students.create', compact('classes','parents'));
+        return view('backend.students.create', compact('classes'));
     }
 
     /**
@@ -50,7 +48,6 @@ class StudentController extends Controller
             'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:users',
             'password'          => 'required|string|min:8',
-            'parent_id'         => 'required|numeric',
             'class_id'          => 'required|numeric',
             'roll_number'       => [
                 'required',
@@ -83,7 +80,6 @@ class StudentController extends Controller
         ]);
 
         $user->student()->create([
-            'parent_id'         => $request->parent_id,
             'class_id'          => $request->class_id,
             'roll_number'       => $request->roll_number,
             'gender'            => $request->gender,
@@ -120,9 +116,8 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $classes = Grade::latest()->get();
-        $parents = Parents::with('user')->latest()->get();
 
-        return view('backend.students.edit', compact('classes','parents','student'));
+        return view('backend.students.edit', compact('classes','student'));
     }
 
     /**
@@ -137,7 +132,6 @@ class StudentController extends Controller
         $request->validate([
             'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:users,email,'.$student->user_id,
-            'parent_id'         => 'required|numeric',
             'class_id'          => 'required|numeric',
             'roll_number'       => [
                 'required',
@@ -167,7 +161,6 @@ class StudentController extends Controller
         ]);
 
         $student->update([
-            'parent_id'         => $request->parent_id,
             'class_id'          => $request->class_id,
             'roll_number'       => $request->roll_number,
             'gender'            => $request->gender,
