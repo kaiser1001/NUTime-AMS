@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 07:10 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Jun 21, 2022 at 12:00 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -160,30 +160,6 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (4, 'App\\User', 6),
 (4, 'App\\User', 7),
 (4, 'App\\User', 8);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `parents`
---
-
-CREATE TABLE `parents` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `gender` enum('male','female') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `current_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `permanent_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `parents`
---
-
-INSERT INTO `parents` (`id`, `user_id`, `gender`, `phone`, `current_address`, `permanent_address`, `created_at`, `updated_at`) VALUES
-(1, 3, 'male', '09341323339', 'Tan-awan City', 'Brgy.Pasil, Himamaylan City', '2022-06-15 20:56:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -350,14 +326,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `profile_picture`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Main Administrator', 'admin@gmail.com', NULL, '$2y$10$0ZKB4WeiAvzY7XQCPtz55Obcgd1GtkIgxtJnAMpuot1L62H59jgNa', 'avatar.png', NULL, '2022-06-15 20:56:41', '2022-06-16 04:25:20'),
-(3, 'Parent', 'parent@gmail.com', NULL, '$2y$10$MVTOdgDm8dA2zrOLmsWNwuahRYMr.A.TLsGyjbvbgHFrdiWT2Yp.y', 'avatar.png', NULL, '2022-06-15 20:56:41', '2022-06-15 20:56:41'),
+(1, 'Main Administrator', 'admin@gmail.com', NULL, '$2y$10$0ZKB4WeiAvzY7XQCPtz55Obcgd1GtkIgxtJnAMpuot1L62H59jgNa', 'avatar.png', 'efrxrbVbDAFlUTrwSxwm9cm8lpzSkKrydBmFnti2NBMjBm0RprEsJBDjEYUp', '2022-06-15 20:56:41', '2022-06-16 04:25:20'),
 (4, 'Maria Amil Mendoza', 'mamendoza@gmail.com', NULL, '$2y$10$6nmkQCsBHw1nHQ2MBIp45uk5WbXQVy0Y59rKJ4EwHFnxKkyo1CsWG', 'maria-amil-mendoza-4.jpg', NULL, '2022-06-15 20:56:41', '2022-06-16 04:45:07'),
 (5, 'Christian Marlou Ocampo', 'cmocampo@gmail.com', NULL, '$2y$10$wT.IabLPUK.DbjQvDOG1G.GwW1p0E1aZw8tXAeyKVggK4HnZz4bR.', 'christian-marlou-ocampo-5.jpg', NULL, '2022-06-16 02:41:36', '2022-06-16 04:44:57'),
 (6, 'Maui Miguel Katigbak', 'mmkatigbak@gmail.com', NULL, '$2y$10$ryol9wGfAl6re9N1GTEwPudhxsJlN4Bzl7/5xDI7oX151oAwf5YhW', 'maui-miguel-katigbak-6.jpg', NULL, '2022-06-16 02:42:43', '2022-06-16 04:47:56'),
 (7, 'Bowwi Katigbak', 'bkatigbak@gmail.com', NULL, '$2y$10$ItJcqEyNSzl7Hwha6SxJ6elkbxjEQLJv7rF/0JkA1wchyUNu7ROry', 'bowwi-katigbak-7.jpg', NULL, '2022-06-16 04:15:10', '2022-06-16 04:44:40'),
 (8, 'Mark John Magsino', 'mjmagsino@gmail.com', NULL, '$2y$10$i/6VqcEGywA5VlTdb17M7.AKt2DIjpsUgEcorXOYDmbY5YoTM4zBi', 'mark-john-magsino-8.jpg', NULL, '2022-06-16 04:19:25', '2022-06-16 04:44:23'),
-(9, 'Joseph Domingo', 'jdomingo@gmail.com', NULL, '$2y$10$TZRypC/I54aYgBaY4QpJJ.Z4QySzvoJKzUdLLSfIIcH.LqTid.VYi', 'avatar.png', NULL, '2022-06-16 04:30:19', '2022-06-16 04:30:19');
+(9, 'Joseph Domingo', 'jdomingo@gmail.com', NULL, '$2y$10$TZRypC/I54aYgBaY4QpJJ.Z4QySzvoJKzUdLLSfIIcH.LqTid.VYi', 'avatar.png', 'rBD8tffth5HvTRGzQtMw1B2dFxdoGKxP7hycvSlnSs2xQlLgMskVVKFqZG90', '2022-06-16 04:30:19', '2022-06-16 04:30:19');
 
 --
 -- Indexes for dumped tables
@@ -400,12 +375,6 @@ ALTER TABLE `model_has_permissions`
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
-
---
--- Indexes for table `parents`
---
-ALTER TABLE `parents`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `password_resets`
@@ -486,16 +455,10 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `parents`
---
-ALTER TABLE `parents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
